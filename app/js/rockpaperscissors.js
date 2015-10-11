@@ -53,6 +53,10 @@ function getWinner(playerMove,computerMove) {
         case "scissors":
         winner="player";
         break;
+
+        default:
+        computerMove="rock";
+        break;
       }
     }
     if (playerMove=="paper"){
@@ -67,6 +71,10 @@ function getWinner(playerMove,computerMove) {
 
         case "scissors":
         winner="computer";
+        break;
+
+        default:
+        computerMove="rock";
         break;
       }
     }
@@ -83,9 +91,13 @@ function getWinner(playerMove,computerMove) {
         case "scissors":
         winner="tie";
         break;
-      }
+
+        default:
+        computerMove="rock";
+        break;
+         }
     }
-    console.log(winner);
+    console.log("this round Winner is: "+winner);
     return winner;
 }
 
@@ -94,21 +106,32 @@ function playToFive() {
     var playerWins = 0;
     var computerWins = 0;
     // Write code that plays 'Rock, Paper, Scissors' until either the player or the computer has won five times.
-    var playerInput;
-    var computerInput;
-    var winnerWinner;
-    while(playerWins<5 || computerWins<5){
-      playerInput=getPlayerMove();
-      computerInput=getComputerMove();
-      winnerWinner=getWinner(playerInput, computerInput);
+    while(playerWins<5 && computerWins<5){
+      var playerInput=getPlayerMove();
+      console.log("player input is: "+playerInput);
+      var computerInput=getComputerMove();
+      console.log("computer input is: "+computerInput);
+
+      var winnerWinner=getWinner(playerInput, computerInput);
+
       if(winnerWinner=="player"){
-        playerWins=playerWins++;
+        playerWins=playerWins+1;
+        console.log("player Win count is: "+playerWins);
 
       }
       if (winnerWinner=="computer"){
-        computerWins=computerWins++;
+        computerWins=computerWins+1;
+        console.log("computer Win count is: "+computerWins);
+
+      }
+      else{
+        computerWins=computerWins;
+        playerWins=playerWins;
+
       }
 
     }
     return [playerWins, computerWins];
 }
+
+console.log(playToFive());
